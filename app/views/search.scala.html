@@ -1,0 +1,12 @@
+@(result: scala.collection.immutable.List[models.QuestionModel])
+
+<h1>Results</h1>
+@main("Result page") {
+    <ul>
+    @for(item <- result) {
+        <li>
+            <a @if(item.is_answered) { class='answered' } href="@item.link">@item.title</a> from <a href="@item.owner_link">@item.owner_name</a>
+        </li>
+    }
+    </ul>
+}

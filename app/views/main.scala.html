@@ -1,0 +1,19 @@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>@title</title>
+        <link rel="stylesheet" media="screen" href="assets/stylesheets/main.css">
+        <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png">
+    </head>
+    <body>
+        <div class="center">
+            <form action="Search" method="GET">
+                <input id="query" name="query" type="text" />
+                <input id="search" type="submit" value="search"/>
+            </form>
+        </div>
+        @content
+    </body>
+</html>
