@@ -3,6 +3,7 @@ package controllers
 import org.json4s._
 import org.json4s.jackson.Serialization
 import play.api.mvc._
+
 import scalaj.http._
 
 object Application extends Controller {
@@ -18,6 +19,13 @@ object Application extends Controller {
     val response: HttpResponse[String] = Http(url).asString
     // Требуется для корректной сериализации JSON.
     implicit val formats = Serialization.formats(NoTypeHints)
+
+//    // Альтернативный способ прохода по элементам
+//    val t = org.json4s.jackson.JsonMethods.parse(response.body)
+//    (t \ "items").children.foreach(x => {
+//      val title = (x \ "title").asInstanceOf[String]
+//      print(title)
+//    })
 
     val output = org.json4s.jackson.Serialization.read[Questions](response.body)
     Ok(views.html.search(output.items.map(q =>
